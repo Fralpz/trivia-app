@@ -5,6 +5,11 @@ Pick a category, difficulty, and number of questions, then test your knowledge.
 Includes light and dark themes, sound effects with volume control, and a results
 screen that reviews every question. Built with Flask, HTML, CSS, and JavaScript.
 
+![Menu screen](screenshots/menu.png)
+![Question screen](screenshots/question.png)
+![Summary screen](screenshots/summary.png)
+![Theme toggle](screenshots/theme-toggle.png)
+
 ## Run it locally
 1. Clone the repo
 2. Install dependencies: `pip install -r requirements.txt`
