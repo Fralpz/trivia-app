@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trivia</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script>
+    // Apply saved theme before the page paints, to avoid a flash of the wrong theme
+    (function () {
+      let theme = null;
+      try { theme = localStorage.getItem("theme"); } catch (e) {}
+      if (!theme) {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+<body>
+  <div class="settings" id="settings">
+    <button id="settingsBtn" type="button" aria-label="Settings"
+            aria-haspopup="dialog" aria-expanded="false" aria-controls="settingsPanel">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    </button>
+
+    <div id="settingsPanel" role="dialog" aria-label="Settings" hidden>
+      <h3 class="panel-title">Settings</h3>
+
+      <div class="setting">
+        <span class="setting-label">Theme</span>
+        <div class="segmented" role="group" aria-label="Theme">
+          <button type="button" data-theme-choice="light">☀️ Light</button>
+          <button type="button" data-theme-choice="dark">🌙 Dark</button>
+        </div>
+      </div>
+
+      <div class="setting">
+        <div class="setting-row">
+          <label class="setting-label" for="soundSwitch">Sound effects</label>
+          <button id="soundSwitch" class="switch" type="button" role="switch" aria-checked="true">
+            <span class="knob"></span>
+          </button>
+        </div>
+        <div class="setting-row volume-row">
+          <input id="volume" type="range" min="0" max="100" value="70" aria-label="Sound effects volume">
+          <span id="volumeLabel">70%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="card">
+
+    <!-- ========== MENU SCREEN ========== -->
+    <section id="menuScreen" class="screen">
+      <h1 class="menu-title">Trivia</h1>
+      <p class="menu-subtitle">Pick a topic and test your knowledge.</p>
+
+      <div class="field">
+        <label for="categorySelect">Category</label>
+        <select id="categorySelect">
+          <option value="">Any category</option>
+          <option value="9">General Knowledge</option>
+          <option value="10">Books</option>
+          <option value="11">Film</option>
+          <option value="12">Music</option>
+          <option value="14">Television</option>
+          <option value="15">Video Games</option>
+          <option value="17">Science &amp; Nature</option>
+          <option value="18">Computers</option>
+          <option value="19">Mathematics</option>
+          <option value="20">Mythology</option>
+          <option value="21">Sports</option>
+          <option value="22">Geography</option>
+          <option value="23">History</option>
+          <option value="24">Politics</option>
+          <option value="25">Art</option>
+          <option value="26">Celebrities</option>
+          <option value="27">Animals</option>
+          <option value="28">Vehicles</option>
+          <option value="29">Comics</option>
+          <option value="30">Gadgets</option>
+          <option value="31">Anime &amp; Manga</option>
+          <option value="32">Cartoons</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="difficultySelect">Difficulty</label>
+        <select id="difficultySelect">
+          <option value="">Any difficulty</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="amountSelect">Number of questions</label>
+        <select id="amountSelect">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+
+      <button id="startBtn" type="button">Start</button>
+    </section>
+
+    <!-- ========== GAME SCREEN ========== -->
+    <section id="gameScreen" class="screen" hidden>
+      <button id="menuBtn" type="button">← Menu</button>
+      <p id="progress"></p>
+      <p id="category"></p>
+      <h2 id="question">Loading...</h2>
+      <div id="answers"></div>
+      <button id="next" hidden>Next</button>
+      <button id="playAgain" hidden>Play Again</button>
+    </section>
+
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
