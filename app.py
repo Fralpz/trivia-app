@@ -14,7 +14,6 @@ def index():
 
 @app.route("/api/questions")
 def get_questions():
-    # Read the menu choices, with safe defaults
     try:
         amount = min(20, max(1, int(request.args.get("amount", 5))))
     except ValueError:
@@ -43,14 +42,13 @@ def get_questions():
 
     results = response.json().get("results", [])
 
-    # Some category + difficulty combos don't have enough questions
+    
     if not results:
         return jsonify({"error": "Not enough questions for that combination. Try fewer questions or a different category."}), 404
 
     questions = []
 
     for q in results:
-        # The API returns HTML entities like &quot; so decode them
         answers = [html.unescape(a) for a in q["incorrect_answers"]]
         correct = html.unescape(q["correct_answer"])
         answers.append(correct)
