@@ -5,10 +5,14 @@ Pick a category, difficulty, and number of questions, then test your knowledge.
 Includes light and dark themes, sound effects with volume control, and a results
 screen that reviews every question. Built with Flask, HTML, CSS, and JavaScript.
 
-![Menu screen](screenshots/menu.png)
-![Question screen](screenshots/question.png)
-![Summary screen](screenshots/summary.png)
-![Theme toggle](screenshots/theme-toggle.png)
+<p align="center">
+  <img src="screenshots/menu_screen.png" width="45%" alt="Menu screen">
+  <img src="screenshots/question_screen.png" width="45%" alt="Question screen">
+</p>
+<p align="center">
+  <img src="screenshots/summary_screen.png" width="45%" alt="Summary screen">
+  <img src="screenshots/theme_toggle.png" width="45%" alt="Theme toggle">
+</p>
 
 ## Run it locally
 1. Clone the repo
