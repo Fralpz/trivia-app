@@ -14,11 +14,12 @@ screen that reviews every question. Built with Flask, HTML, CSS, and JavaScript.
   <img src="screenshots/theme_toggle.png" width="45%" alt="Theme toggle">
 </p>
 
-## Run it locally
+## Run it locally or on the site
 1. Clone the repo
 2. Install dependencies: `pip install -r requirements.txt`
 3. Start the server: `python app.py`
 4. Open http://127.0.0.1:5000
+5. Play it live https://your-app-name.onrender.com
 
 ## Credits
 Questions provided by [Open Trivia DB](https://opentdb.com/),
