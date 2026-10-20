@@ -1,8 +1,8 @@
 let questions = [];
 let current = 0;
 let score = 0;
-let answerLog = []; // remembers every answer for the summary
-let requestId = 0;  // guards against late responses after leaving the game
+let answerLog = []; 
+let requestId = 0;  
 
 const menuScreen = document.getElementById("menuScreen");
 const gameScreen = document.getElementById("gameScreen");
@@ -27,7 +27,7 @@ const soundSwitch = document.getElementById("soundSwitch");
 const volumeSlider = document.getElementById("volume");
 const volumeLabel = document.getElementById("volumeLabel");
 
-// ---------- Settings panel open/close ----------
+
 function openSettings() {
   settingsPanel.hidden = false;
   settingsBtn.setAttribute("aria-expanded", "true");
@@ -55,7 +55,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// ---------- Theme ----------
+
 function currentTheme() {
   return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
 }
@@ -81,10 +81,10 @@ themeButtons.forEach((btn) => {
 
 updateThemeUI();
 
-// ---------- Sound ----------
+
 let audioCtx = null;
 let soundOn = true;
-let masterVolume = 0.7; // 0 to 1
+let masterVolume = 0.7;
 
 try {
   soundOn = localStorage.getItem("sound") !== "off";
@@ -176,13 +176,13 @@ function playWrong() {
   playTone(262, 0.15, 0.40, "sine", 0.12);
 }
 
-// ---------- Screens ----------
+
 function showScreen(name) {
   menuScreen.hidden = name !== "menu";
   gameScreen.hidden = name !== "game";
 }
 
-// ---------- Menu ----------
+
 let lastSettings = { category: "", difficulty: "", amount: "5" };
 
 try {
@@ -207,15 +207,13 @@ startBtn.onclick = () => {
 };
 
 menuBtn.onclick = () => {
-  requestId++; // ignore any request still loading
+  requestId++;
   showScreen("menu");
 };
 
-// ---------- Game ----------
 async function loadQuestions() {
   const myRequest = ++requestId;
 
-  // Reset game state
   current = 0;
   score = 0;
   answerLog = [];
@@ -335,5 +333,5 @@ nextBtn.onclick = () => {
 
 playAgainBtn.onclick = loadQuestions;
 
-// Start on the menu screen
+
 showScreen("menu");

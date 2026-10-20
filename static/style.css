@@ -140,7 +140,7 @@ body {
 
 .setting > .setting-label { margin-bottom: 8px; }
 
-/* Theme segmented control */
+
 .segmented {
   display: flex;
   padding: 3px;
@@ -194,7 +194,7 @@ body {
 .switch[aria-checked="true"] { background: var(--accent); }
 .switch[aria-checked="true"] .knob { transform: translateX(20px); }
 
-/* Volume slider */
+
 .volume-row { margin-top: 12px; }
 
 #volume {
