@@ -19,7 +19,7 @@ screen that reviews every question. Built with Flask, HTML, CSS, and JavaScript.
 2. Install dependencies: `pip install -r requirements.txt`
 3. Start the server: `python app.py`
 4. Open http://127.0.0.1:5000
-5. Play it live https://your-app-name.onrender.com
+5. Play it live https://trivia-app-i2pe.onrender.com/
 
 ## Credits
 Questions provided by [Open Trivia DB](https://opentdb.com/),
